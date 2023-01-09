@@ -1,14 +1,28 @@
-###############################
+###############################i
 ## REGISTER DMAAS AWS SOURCE ##
 ###############################
 
+#Import Modules
+Import-Module AWS.Tools.Common
+Import-Module AWS.Tools.CloudFormation
+
 #Variables
 $dmaasUsername = "username as email"
-$dmaasRegion = "us-east-2"
-$dmaasApiKey = "enter API key value"
-$awsRegion = "us-east-2"
+$dmaasRegion = "us-west-2"
+$dmaasApiKey = "Enter API Key"
+$awsRegion = "us-west-2"
+$awsAccountNumber = "Enter Account Number"
+$awsAccessKeyId = "Enter Access Key"
+$awsSecretAccessKey = "Enter Secret Key"
+$awsResourceGroup = "Enter Any name"
 $heliosApiUrlv1 = "https://helios.cohesity.com/irisservices/api/v1"
 $heliosApiUrlv2 = "https://helios.cohesity.com/v2"
+
+#Create and set AWS profile
+Write-Output "`nConnecting to AWS ..."
+Set-AWSCredentials -AccessKey $awsAccessKeyId -SecretKey $awsSecretAccessKey -StoreAs $awsResourceGroup
+Initialize-AWSDefaultConfiguration -ProfileName $awsResourceGroup -Region $awsRegion
+Write-Output "   Connected to AWS"
 
 #Create authorized header with no region
 $dmaasAuthorizedHeader = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
