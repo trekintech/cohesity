@@ -8,7 +8,7 @@ $startTimeUsecs = [math]::Round((($startTime.ToUniversalTime() - [datetime]'1/1/
 
 $params = @{
     'includeDmaasLogs' = 'true'
-    'serviceContext[0]' = 'Dmaas'
+    'serviceContext' = 'Dmaas'
     'startTimeUsecs' = [int64]$startTimeUsecs
 }
 
